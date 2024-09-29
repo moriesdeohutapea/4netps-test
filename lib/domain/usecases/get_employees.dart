@@ -9,11 +9,6 @@ class GetEmployees {
   GetEmployees(this.repository);
 
   Future<Either<String, List<Employee>>> execute() async {
-    try {
-      final employees = await repository.getEmployees();
-      return Right(employees);
-    } catch (e) {
-      return const Left('Failed to fetch employees');
-    }
+    return await repository.getEmployees();
   }
 }
