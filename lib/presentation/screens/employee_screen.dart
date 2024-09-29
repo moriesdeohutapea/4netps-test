@@ -14,26 +14,23 @@ class EmployeeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Employee List'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              context.read<EmployeeBloc>().add(FetchEmployees());
-            },
-          ),
-        ],
       ),
       body: BlocBuilder<EmployeeBloc, EmployeeState>(
         builder: (context, state) {
           if (state is EmployeeLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is EmployeeLoaded) {
-            return ListView.builder(
-              itemCount: state.employees.length,
-              itemBuilder: (context, index) {
-                final employee = state.employees[index];
-                return EmployeeListItem(employee: employee);
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<EmployeeBloc>().add(FetchEmployees());
               },
+              child: ListView.builder(
+                itemCount: state.employees.length,
+                itemBuilder: (context, index) {
+                  final employee = state.employees[index];
+                  return EmployeeListItem(employee: employee);
+                },
+              ),
             );
           } else if (state is EmployeeError) {
             return Center(child: Text(state.message));
