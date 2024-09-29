@@ -1,0 +1,49 @@
+# Flutter/Dart related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+.pub-cache/
+.pub/
+**/GeneratedPluginRegistrant.java
+**/GeneratedPluginRegistrant.kt
+
+# Intellij related
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code related
+.vscode/
+.settings/
+
+# Xcode related
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/project.xcworkspace/
+
+# Android related
+android/.gradle/
+android/.idea/
+android/captures/
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/local.properties
+
+# Miscellaneous
+*.log
+*.lock
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.DS_Store
+*.dart_tool/
