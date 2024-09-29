@@ -11,12 +11,11 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
   EmployeeBloc() : super(EmployeeLoading()) {
     on<FetchEmployees>((event, emit) async {
       emit(EmployeeLoading());
-      try {
-        final employees = await getEmployees.execute();
-        emit(EmployeeLoaded(employees));
-      } catch (e) {
-        emit(EmployeeError('Failed to fetch employees'));
-      }
+      final result = await getEmployees.execute();
+      result.fold(
+        (failure) => emit(EmployeeError(failure)),
+        (employees) => emit(EmployeeLoaded(employees)),
+      );
     });
   }
 }

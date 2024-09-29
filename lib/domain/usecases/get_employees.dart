@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+
 import '../entities/employee.dart';
 import '../repositories/employee_repository.dart';
 
@@ -6,7 +8,12 @@ class GetEmployees {
 
   GetEmployees(this.repository);
 
-  Future<List<Employee>> execute() async {
-    return await repository.getEmployees();
+  Future<Either<String, List<Employee>>> execute() async {
+    try {
+      final employees = await repository.getEmployees();
+      return Right(employees);
+    } catch (e) {
+      return const Left('Failed to fetch employees');
+    }
   }
 }
