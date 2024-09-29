@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorObservers: [ChuckerFlutter.navigatorObserver],
       home: Scaffold(
-        body: Center(
+        body: SafeArea(
           child: BlocProvider(
             create: (context) => EmployeeBloc()..add(FetchEmployees()),
             child: const EmployeeScreen(),
