@@ -4,14 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fornetps_test_tech/presentation/bloc/bloc_event.dart';
 import 'package:fornetps_test_tech/presentation/bloc/employee_bloc.dart';
 import 'package:fornetps_test_tech/presentation/screens/employee_screen.dart';
+import 'package:fornetps_test_tech/utils/env_config.dart';
 import 'package:get_it/get_it.dart';
 
 import 'injection.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EnvConfig.loadEnv('');
   setup();
   runApp(const MainApp());
 }
