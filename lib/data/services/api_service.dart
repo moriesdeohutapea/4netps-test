@@ -52,18 +52,14 @@ class ApiService {
   List<T> _mapResponseToList<T>(dynamic data, T Function(Map<String, dynamic>) fromJson) {
     if (data is List) {
       return data.map((e) => fromJson(e as Map<String, dynamic>)).toList();
-    } else if (data is Map<String, dynamic>) {
+    }
+    if (data is Map<String, dynamic>) {
       final baseResponse = BaseResponse<List<T>>.fromJson(
         data,
         (json) => (json as List).map((e) => fromJson(e as Map<String, dynamic>)).toList(),
       );
-      if (baseResponse.data != null) {
-        return baseResponse.data!;
-      } else {
-        throw Exception('Invalid data format: Missing data or employees key');
-      }
-    } else {
-      throw Exception('Invalid data format: ${data.runtimeType}');
+      return baseResponse.data ?? (throw Exception('Invalid data format: Missing data key'));
     }
+    throw Exception('Invalid data format: ${data.runtimeType}');
   }
 }
