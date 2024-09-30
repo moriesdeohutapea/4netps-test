@@ -13,9 +13,8 @@ class EmployeeRepositoryImpl implements EmployeeRepository {
   @override
   Future<Either<String, List<Employee>>> getEmployees() async {
     try {
-      final employeeModels = await _apiService.get<EmployeeModel>(
+      final employeeModels = await _apiService.getList<EmployeeModel>(
         path: 'employees.json',
-        listKey: 'employees',
         fromJson: (json) => EmployeeModel.fromJson(json),
       );
       final employees = employeeModels.map(_mapToEmployee).toList();
